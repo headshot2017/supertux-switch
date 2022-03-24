@@ -41,6 +41,7 @@ enum MainMenuIDs {
 enum OptionsMenuIDs {
   MNID_OPENGL,
   MNID_FULLSCREEN,
+  MNID_STRETCH,
   MNID_SOUND,
   MNID_MUSIC,
   MNID_SHOWFPS

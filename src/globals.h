@@ -67,6 +67,7 @@ extern MouseCursor * mouse_cursor;
 extern bool use_gl;
 extern bool use_joystick;
 extern bool use_fullscreen;
+extern bool stretch_display;
 extern bool debug_mode;
 extern bool show_fps;
 

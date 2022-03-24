@@ -363,6 +363,7 @@ void st_menu(void)
   options_menu->additem(MN_DEACTIVE,"OpenGL (not supported)",use_gl, 0, MNID_OPENGL);
 #endif
   options_menu->additem(MN_TOGGLE,"Fullscreen",use_fullscreen,0, MNID_FULLSCREEN);
+  options_menu->additem(MN_TOGGLE,"Stretched ",stretch_display,0, MNID_STRETCH);
   if(audio_device)
     {
       options_menu->additem(MN_TOGGLE,"Sound     ", use_sound,0, MNID_SOUND);
@@ -513,6 +514,24 @@ void process_options_menu(void)
         {
           use_fullscreen = !use_fullscreen;
           st_video_setup();
+        }
+      break;
+    case MNID_STRETCH:
+      if(stretch_display != options_menu->isToggled(MNID_STRETCH))
+        {
+          stretch_display = !stretch_display;
+          int w, h;
+          if (use_fullscreen)
+          {
+              w = (!stretch_display) ? 640 : 1280;
+              h = (!stretch_display) ? 480 : 720;
+          }
+          else
+          {
+              w = (!stretch_display) ? 1280 : 640;
+              h = (!stretch_display) ? 1280 : 480;
+          }
+          SDL_RenderSetLogicalSize(renderer, w, h);
         }
       break;
     case MNID_SOUND:
@@ -670,6 +689,18 @@ void st_video_setup_sdl(void)
 	  screen = SDL_CreateRGBSurface(0, SCREEN_W, SCREEN_H, 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
 	  sdlTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, SCREEN_W, SCREEN_H);
     }
+  int w, h;
+  if (use_fullscreen)
+  {
+      w = (!stretch_display) ? 640 : 1280;
+      h = (!stretch_display) ? 480 : 720;
+  }
+  else
+  {
+      w = (!stretch_display) ? 1280 : 640;
+      h = (!stretch_display) ? 1280 : 480;
+  }
+  SDL_RenderSetLogicalSize(renderer, w, h);
 }
 
 void st_video_setup_gl(void)
@@ -736,6 +767,20 @@ void st_video_setup_gl(void)
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   glTranslatef(0.0f, 0.0f, 0.0f);
+
+  int w, h;
+  if (use_fullscreen)
+  {
+      w = (!stretch_display) ? 640 : 1280;
+      h = (!stretch_display) ? 480 : 720;
+  }
+  else
+  {
+      w = (!stretch_display) ? 1280 : 640;
+      h = (!stretch_display) ? 1280 : 480;
+  }
+  SDL_RenderSetLogicalSize(renderer, w, h);
+
 
 #endif
 
