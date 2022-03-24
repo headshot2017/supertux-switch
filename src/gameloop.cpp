@@ -436,7 +436,10 @@ GameSession::process_events()
                   break;
             
                 case SDL_JOYBUTTONDOWN:
-                  if (event.jbutton.button == joystick_keymap.a_button)
+                  if (event.jbutton.button == 12) tux.input.left = DOWN; // dpad left
+                  else if (event.jbutton.button == 14) tux.input.right = DOWN; // dpad right
+                  else if (event.jbutton.button == 15) tux.input.down = DOWN; // dpad down
+                  else if (event.jbutton.button == joystick_keymap.a_button)
                     tux.input.up = DOWN;
                   else if (event.jbutton.button == joystick_keymap.b_button)
                     tux.input.fire = DOWN;
@@ -460,7 +463,10 @@ GameSession::process_events()
 				  }
                   break;
                 case SDL_JOYBUTTONUP:
-                  if (event.jbutton.button == joystick_keymap.a_button)
+                  if (event.jbutton.button == 12) tux.input.left = UP; // dpad left
+                  else if (event.jbutton.button == 14) tux.input.right = UP; // dpad right
+                  else if (event.jbutton.button == 15) tux.input.down = UP; // dpad down
+                  else if (event.jbutton.button == joystick_keymap.a_button)
                     tux.input.up = UP;
                   else if (event.jbutton.button == joystick_keymap.b_button)
                     tux.input.fire = UP;
