@@ -439,9 +439,9 @@ GameSession::process_events()
                   if (event.jbutton.button == 12) tux.input.left = DOWN; // dpad left
                   else if (event.jbutton.button == 14) tux.input.right = DOWN; // dpad right
                   else if (event.jbutton.button == 15) tux.input.down = DOWN; // dpad down
-                  else if (event.jbutton.button == joystick_keymap.a_button)
+                  else if (event.jbutton.button == joystick_keymap.a_button || event.jbutton.button == joystick_keymap.b_button)
                     tux.input.up = DOWN;
-                  else if (event.jbutton.button == joystick_keymap.b_button)
+                  else if (event.jbutton.button == joystick_keymap.x_button || event.jbutton.button == joystick_keymap.y_button)
                     tux.input.fire = DOWN;
 				  else if (event.jbutton.button == 11) // minus
                     on_escape_press();
@@ -466,9 +466,9 @@ GameSession::process_events()
                   if (event.jbutton.button == 12) tux.input.left = UP; // dpad left
                   else if (event.jbutton.button == 14) tux.input.right = UP; // dpad right
                   else if (event.jbutton.button == 15) tux.input.down = UP; // dpad down
-                  else if (event.jbutton.button == joystick_keymap.a_button)
+                  else if (event.jbutton.button == joystick_keymap.a_button || event.jbutton.button == joystick_keymap.b_button)
                     tux.input.up = UP;
-                  else if (event.jbutton.button == joystick_keymap.b_button)
+                  else if (event.jbutton.button == joystick_keymap.x_button || event.jbutton.button == joystick_keymap.y_button)
                     tux.input.fire = UP;
                   break;
 
